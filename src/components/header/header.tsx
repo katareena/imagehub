@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import './header.scss';
 import cn from 'classnames';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
-import { ReactComponent as LogoIcon } from '../../assets/icon-light-bulb.svg';
+import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
 
 const Header: FC = (): JSX.Element => {

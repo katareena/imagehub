@@ -2,6 +2,7 @@
 
 .header {
   position: relative;
+  background-color: v.$white;
 }
 
 .header__inner {
@@ -36,9 +37,11 @@
   cursor: pointer; 
 
   & svg {
+    stroke: #000000;
     width: 45px;
     height: 45px;
-    margin-right: 20px;
+    margin-right: 5px;
+    transition: v.$transition;
 
     @media screen and (max-width: v.$tabletWidth) {
       width: 40px;
@@ -47,7 +50,7 @@
     }
 
     @media screen and (max-width: v.$mobileWidth) {
-      margin-right: 20px;
+      margin-right: 5px;
     } 
   }
 
@@ -89,12 +92,13 @@
 .nav {
   position: relative;
   transform: translateX(0);
-  background-color: v.$gray;
+  
 
   @media screen and (max-width: v.$mobileWidth) {
     height: 100%;
     width: 240px;
     padding: 60px 0 30px 0;
+    // background-color: v.$gray;
     box-shadow: v.$box-shadow;
     transform: translateX(105%);  
 
@@ -181,10 +185,15 @@
   
     &:hover,
     &:focus {
-      color: v.$accent2;
+      color: v.$accent1;
       outline: none;
       transition: v.$transition;
-    }    
+    }
+    
+    &:hover svg {
+      stroke: v.$accent1;
+      transition: v.$transition;
+    }
   }
 }
 
@@ -193,7 +202,7 @@
     cursor: pointer;
   
     &:hover {
-      color: v.$accent2;
+      color: v.$accent1;
       outline: none;
     }   
   }
