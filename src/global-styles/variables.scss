@@ -1,15 +1,15 @@
 $maxWidth: 1440px;
-$desktopWidth: 1023px;
+$desktopWidth: 1024px;
 $tabletWidth: 767px;
 $mobileWidth: 576px;
 
 $white: #ffffff;
-$black: #201F1E;
-$text: #ffffff;
+$text-light: #ffffff;
+$text-dark: #201F1E;
 $accent1: #98F8A0;
 $accent2: #454EEC;
-$gray: #e7e7e7;
-$box-shadow1: 0px 0px 14px rgba(0, 0, 0, 0.1);
-$box-shadow2: 0px 5px 15px 0px rgba(0, 0, 0, 0.05);
+$gray: #efefef;
+$box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.45);
+$mask: rgba(0, 0, 0, 0.35);
 
 $transition: all 0.3s ease;

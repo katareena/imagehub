@@ -1,0 +1,58 @@
+@use '../../global-styles/variables.scss' as v;
+
+.catalog__title {
+  margin-bottom: 20px;
+
+  @media screen and (max-width: v.$mobileWidth) {
+    margin-bottom: 15px;
+  }
+}
+
+.catalog__box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 25px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: v.$desktopWidth) {
+    grid-template-columns: repeat(3, minmax(205px, 1fr));
+  }
+
+  @media screen and (max-width: v.$tabletWidth) {
+    grid-template-columns: repeat(2, minmax(205px, 1fr));
+  }
+
+  @media screen and (max-width: v.$mobileWidth) {
+    grid-template-columns: repeat(1, minmax(205px, 1fr));
+    gap: 15px;
+  }
+}
+
+.catalog__more {
+  display: none;
+
+  @media screen and (max-width: v.$desktopWidth) {
+    display: flex;
+  }
+}
+
+.catalog__button {
+  display: none;
+
+  @media screen and (max-width: v.$desktopWidth) {
+    display: block;
+    padding: 10px 20px;
+    width: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: v.$accent2;
+    border-radius: 7px;
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: v.$text-light;
+  }
+}
