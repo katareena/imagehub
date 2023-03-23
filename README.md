@@ -1,8 +1,8 @@
-<h1 align="left">Welcome to ImageHub App👋</h1>
-Photo Inspiration App
+## Welcome to ImageHub App👋
+### Photo Inspiration App
 
 * Stack: React CRA, React Router Dom, TypeScript, SCSS;
-* [API integration](https://www.pexels.com/api/documentation);
+* [Pexels API integration](https://www.pexels.com/api/documentation);
 * Infinite scrolling;
 * Favouriting;
 * Pagination;
@@ -11,17 +11,22 @@ Photo Inspiration App
 
 ### 🏠 [Homepage](https://github.com/katareena/imagehub)
 
-## Prerequisites
-- node >= 16.13.0
+---
 
-## Install
+### Prerequisites
 
-```sh
-npm install
-```
+node >= 16.13.0
+npm last version
 
-## Usage
+---
 
-```sh
-npm run start
+### Install & Run
+
+```ssh
+
+git clone https://github.com/katareena/imagehub.git    
+
+$ npm install
+$ npm start
+
 ```
