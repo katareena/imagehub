@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
 import './catalog-item.scss';
+import ProgressiveImage from '../image/image';
 import { IImage } from '../../interfaces/image';
 
-const CatalogItem: FC<IImage> = ({photographer, alt, src: {small}}: IImage): JSX.Element => {
+const CatalogItem: FC<IImage> = (props: IImage): JSX.Element => {
+  const { photographer, alt } = props;
   const title = alt || 'Untitled photo';
 
   return (
     <article className='item'>
       <h3 className='visually-hidden'>catalog item</h3>
       
-      <div className='item__img'>
-        <img src={small} alt={title}/>
-      </div>
+      <ProgressiveImage {...props}/>
       
       <div className='item__mask'>          
         <p className='item__info item__info--decor'><b>{title}</b></p>

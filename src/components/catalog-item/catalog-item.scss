@@ -1,47 +1,51 @@
 @use '../../global-styles/variables' as v;
 
 .item {
-  width: 100%;
-  max-width: 260px;
-  height: 200px;
-  border-radius: 5px;
-  overflow: hidden;
-  transition: v.$transition;
+  // width: 100%;
+  // max-width: 260px;
+  // height: 200px;
+  // box-shadow: v.$box-shadow;
+  border-radius: 3px;
+  overflow: hidden;  
   background-color: v.$gray;
+  margin-bottom: 12px;
   position: relative;
-  box-shadow: v.$box-shadow;
-  margin: 0 auto;
+  transition: v.$transition;
 };
 
 .item__img {
   width: inherit;
   height: inherit;
-  line-height: 0;
-  filter: blur(0);
-  transition: v.$transition;
-  background-color: gray;
+  line-height: 0;  
+  background-color: v.$gray;
 
   & img {
     width: 100%;
     height: 100%;
+    min-height: 150px;
     object-fit: cover;
     object-position: center;
   }
 };
 
 .item__img--loading {
-  filter: blur(10px);
+  filter: blur(5px);
+}
+
+.item__img--loaded {
+  filter: blur(0);
+  transition: filter 0.4s linear;
 }
 
 .item__mask {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 10px 20px 20px 20px;
+  padding: 25px;
   top: 0;
   left: 0;
   right: 0;
@@ -52,6 +56,10 @@
   display: none;
   opacity: 0;
   animation: fadeOutFromBlock 0.4s ease-in-out;
+
+  @media screen and (max-width: v.$tabletWidth) {
+    padding: 15px;
+  }
 }
 
 .item:hover .item__mask {
@@ -107,12 +115,15 @@
 
 .item__favorite {
   display: block;
-  padding: 7px 20px;
+  padding: 7px 30px;
   border-radius: 50px;
   border: solid 1px v.$white;
   color: v.$text-light;
   margin-top: 17px;
 
+  @media screen and (max-width: v.$tabletWidth) {
+    padding: 7px 20px;
+  }
 }
 
 .item__info:first-letter,

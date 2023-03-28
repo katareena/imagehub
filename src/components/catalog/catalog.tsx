@@ -6,7 +6,6 @@ import Loading from '../loading/loading';
 
 const Catalog: FC = (): JSX.Element => {
   const { items, isLoading } = useGlobalContext();
-  console.log(items[0]);
 
   if(isLoading) return <Loading />;
 

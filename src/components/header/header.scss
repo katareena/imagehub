@@ -34,7 +34,6 @@
   align-items: center;
   width: max-content;
   color: v.$text-dark;
-  cursor: pointer; 
 
   & svg {
     stroke: #000000;
@@ -46,7 +45,6 @@
     @media screen and (max-width: v.$tabletWidth) {
       width: 40px;
       height: 40px;
-      margin-right: 0;
     }
 
     @media screen and (max-width: v.$mobileWidth) {
@@ -62,12 +60,11 @@
     text-transform: uppercase;
 
     @media screen and (max-width: v.$tabletWidth) {
-      display: none;
+      font-size: 26px;
     }
 
     @media screen and (max-width: v.$mobileWidth) {
-      display: block;
-      font-size: 20px;
+      font-size: 22px;
     } 
   }
 }
