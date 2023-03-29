@@ -76,3 +76,16 @@ button {
     }    
   }
 }
+
+.loading {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  color: v.$text-dark;
+
+  @media screen and (max-width: v.$mobileWidth) {
+    padding: 5px 25px;
+  }
+}

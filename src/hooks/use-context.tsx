@@ -1,13 +1,13 @@
 import {
   createContext,
-  useCallback,
   useContext,
   useState,
-  useEffect
+  useEffect,
+  Dispatch
 } from 'react';
 import { toCamelCase } from '../utils/to-camel-case';
 import { IImage } from '../interfaces/image';
-import { URL, FETCH_OPTIONS } from '../constants/constants';
+import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../constants/constants';
 
 type AppProviderProps = {
   children: JSX.Element,
@@ -15,51 +15,58 @@ type AppProviderProps = {
 
 type ContextProps = {
   items: IImage[] | [], 
-  setItems: React.Dispatch<React.SetStateAction<IImage[] | []>>
-  isLoading: boolean,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>, 
+  setItems: Dispatch<React.SetStateAction<IImage[] | []>>,
+  favourites: IImage[] | [], 
+  setFavourites: Dispatch<React.SetStateAction<IImage[] | []>>,
+  fetching: boolean,
+  setFetching: Dispatch<React.SetStateAction<boolean>>, 
+  currentPage: number,
+  setCurrentPage: Dispatch<React.SetStateAction<number>>,
+  isNextPage: boolean,
+  setIsNextPage: Dispatch<React.SetStateAction<boolean>>, 
 };
 
 const AppContext = createContext<ContextProps | null>(null);
 
 const AppProvider = ({ children }: AppProviderProps) => {
   const [ items, setItems ] = useState<IImage[] | []>([]);    
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
-
-  const fetchData = useCallback(async() => {
-    setIsLoading(true);
-
-    try {
-      const response = await fetch(URL, FETCH_OPTIONS);
-      const {photos} = await response.json();
-
-      if (photos) {
-        const cameliseData = toCamelCase(photos);
-        setItems(cameliseData);
-
-      } else {
-        setItems([]);
-      }
-
-      setIsLoading(false);
-      
-    } catch(error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-
-  }, []);  
+  const [ favourites, setFavourites ] = useState<IImage[] | []>([]);    
+  const [ fetching, setFetching ] = useState<boolean>(true);
+  const [ currentPage, setCurrentPage ] = useState<number>(1);
+  const [ isNextPage, setIsNextPage ] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    if(fetching) {
+      fetch(`${URL}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}`, FETCH_OPTIONS)
+      .then((data) => {
+        return data.json();
+      })
+      .then(data => {
+        const nextPage = !!data.next_page;
+        const cameliseData = toCamelCase(data.photos);
+        setItems([...items, ...cameliseData]);
+        setCurrentPage( prevState => prevState + 1);
+        setIsNextPage(nextPage);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setFetching(false))
+    }        
+  }, [fetching]);
 
   return (
     <AppContext.Provider value = {{
       items,
       setItems,
-      isLoading,
-      setIsLoading,
+      favourites,
+      setFavourites,
+      fetching,
+      setFetching, 
+      currentPage,
+      setCurrentPage,
+      isNextPage,
+      setIsNextPage,
     }}>
       { children }
     </AppContext.Provider>

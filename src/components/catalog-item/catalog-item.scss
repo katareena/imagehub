@@ -1,14 +1,13 @@
 @use '../../global-styles/variables' as v;
 
 .item {
-  // width: 100%;
-  // max-width: 260px;
-  // height: 200px;
-  // box-shadow: v.$box-shadow;
+  width: 100%;
+  max-width: 260px;
+  height: 200px;
+    // margin-bottom: 12px;
   border-radius: 3px;
   overflow: hidden;  
-  background-color: v.$gray;
-  margin-bottom: 12px;
+  background-color: rgb(152, 152, 152);
   position: relative;
   transition: v.$transition;
 };
@@ -17,7 +16,6 @@
   width: inherit;
   height: inherit;
   line-height: 0;  
-  background-color: v.$gray;
 
   & img {
     width: 100%;
@@ -124,13 +122,19 @@
   @media screen and (max-width: v.$tabletWidth) {
     padding: 7px 20px;
   }
+
+  &.item__favorite--active {
+    border: solid 1px v.$accent1;
+    color: v.$text-dark;
+
+    background-color: v.$accent1;
+  }
 }
 
 .item__info:first-letter,
 .item__favorite:first-letter {
   text-transform: uppercase;
 }
-
 
 // ----- special states ----- 
 .item__favorite:hover {

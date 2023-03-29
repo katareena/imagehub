@@ -1,4 +1,6 @@
-export const URL = 'https://api.pexels.com/v1/curated?page=1&per_page=40';
+export const URL = 'https://api.pexels.com/v1/curated';
+export const ITEMS_PER_FETCHING = 24;
+
 export const FETCH_OPTIONS = {
   method: 'GET',
   headers: {
@@ -8,6 +10,6 @@ export const FETCH_OPTIONS = {
 
 export enum AppRoute {
   Root = '/',
-  MyFavorite = '/favorite',
+  MyFavorite = 'favorites',
   NoFoundPage = '*',
 }
