@@ -1,37 +1,23 @@
-import React, { FC, useState, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-import cn from 'classnames';
+import React, { FC } from 'react';
 import { IImage } from '../../interfaces/image';
 
-const ProgressiveImage: FC<IImage> = ({alt, src: {small, original}, width, height}: IImage): JSX.Element => {
-  const [imageSrc, setImageSrc] = useState(small);
-
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  }); 
-
-  useEffect(() => {
-    const img: HTMLImageElement = new (Image as any)(width, height);
-    img.src = original;
-      img.onload = () => {
-        setImageSrc(original)
-      }  
-  }, [inView, original, width, height]);
-  
+const ProgressiveImage: FC<IImage> = ({alt, src: {small, original, large, large2x, medium, portrait, tiny, landscape}, width, height, avgColor}: IImage): JSX.Element => {
   const title = alt || 'Untitled photo'; 
 
   return (
     <div
-      className={cn(
-        'item__img', {
-          'item__img--loading': imageSrc === small,
-          'item__img--loaded': imageSrc !== small
-          })}
-      ref={ref}
+      className='item__img'
+      style={{backgroundColor: avgColor}}
     >
       <img
-        src={imageSrc}
+        src={small}
+        srcSet={`
+          ${tiny} 375w,
+          ${landscape} 576w,
+          ${medium} 767w,
+          ${large} 1024w,
+          ${large2x} 1200w,         
+        `}
         alt={title}
         width={width}
         height={height}

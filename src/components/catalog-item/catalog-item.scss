@@ -3,10 +3,9 @@
 .item {
   width: 100%;
   height: 200px;
-    // margin-bottom: 12px;
   border-radius: 3px;
   overflow: hidden;  
-  background-color: rgb(152, 152, 152);
+  background-color: v.$gray;
   position: relative;
   transition: v.$transition;
 };
@@ -22,6 +21,7 @@
     min-height: 150px;
     object-fit: cover;
     object-position: center;
+    display: block;
   }
 };
 
@@ -110,7 +110,7 @@
   left: 0;
 }
 
-.item__favorite {
+.item__favourite {
   display: block;
   padding: 7px 30px;
   border-radius: 50px;
@@ -124,27 +124,26 @@
 }
 
 .item__info:first-letter,
-.item__favorite:first-letter {
+.item__favourite:first-letter {
   text-transform: uppercase;
 }
 
 // ----- special states ----- 
-.item__favorite:hover {
+.item__favourite:hover {
   @media screen and (min-width: v.$tabletWidth) {
     border: solid 1px v.$accent1;
     color: v.$accent1;
   }
 }
 
-.item__favorite--active {
+.item__favourite--active {
   border: solid 1px v.$accent1;
-  color: v.$text-dark;
   background-color: v.$accent1;
 
   &:hover {
     @media screen and (min-width: v.$tabletWidth) {
       border: solid 1px v.$accent1;
-      color: v.$text-dark;
+      color: v.$text-light;
       background-color: v.$accent1;
     }
   }

@@ -8,9 +8,9 @@ const MainPage: FC = (): JSX.Element => {
     <div className='layout'>
       <Header />
       
-      <main className='main'>        
-        <Outlet />    
-      </main>
+      <main className='layout__main'>        
+        <Outlet /> 
+      </main>      
     </div>
   )
 }

@@ -44,9 +44,9 @@ const Header = (): JSX.Element => {
             <li className='nav__item'>
               <NavLink
                 className='nav__link'
-                to={AppRoute.MyFavorite}
+                to={AppRoute.Favourites}
               >
-                favorites
+                favourites
               </NavLink>
             </li>
           </ul>

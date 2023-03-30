@@ -10,6 +10,6 @@ export const FETCH_OPTIONS = {
 
 export enum AppRoute {
   Root = '/',
-  MyFavorite = '/favorites',
+  Favourites = '/favourites',
   NoFoundPage = '*',
 }

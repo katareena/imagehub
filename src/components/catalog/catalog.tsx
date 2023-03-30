@@ -19,13 +19,13 @@ const Catalog = (): JSX.Element => {
     }
   }, [inView, isNextPage, setFetching]);
 
-  const [ favorites, setFavorites ] = useLocalStorage([], 'favorites');
+  const [ favourites, setFavourites ] = useLocalStorage([], 'favourites');
 
-  const addToFavoritesHandler = (id: number) => {
-    const isSelectedItems = favorites.find((item: IImage) => item.id === id);
+  const addToFavouritesHandler = (id: number) => {
+    const isSelectedItems = favourites.find((item: IImage) => item.id === id);
     const newItem = items.find((item: IImage) => item.id === id);
 
-    setFavorites((prev: IImage[]) => (      
+    setFavourites((prev: IImage[]) => (      
       isSelectedItems
         ? prev.filter((el: IImage) => el.id !== id) 
         : [...prev, newItem]
@@ -41,8 +41,8 @@ const Catalog = (): JSX.Element => {
           <CatalogItem
             item={item}
             key={`${item.id}-${index}`}
-            addToFavoritesHandler={addToFavoritesHandler}
-            favorites={favorites}
+            addToFavouritesHandler={addToFavouritesHandler}
+            favourites={favourites}
           />        
         ))}
         <div className='loading' ref={ref}>Loading...</div>

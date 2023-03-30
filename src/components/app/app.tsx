@@ -2,7 +2,7 @@ import React from 'react';
 import { AppProvider } from '../../hooks/use-context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
-import Favorites from '../favorites/favorites';
+import Favourites from '../favourites/favourites';
 import { AppRoute } from '../../constants/constants';
 import Catalog from '../catalog/catalog';
 import Lost from '../lost/lost';
@@ -14,7 +14,7 @@ function App() {
 				<Routes>
 					<Route path={AppRoute.Root} element={<MainPage />} > 
 						<Route index element={<Catalog />} />
-						<Route path={AppRoute.MyFavorite} element={<Favorites />} />
+						<Route path={AppRoute.Favourites} element={<Favourites />} />
 						<Route path={AppRoute.NoFoundPage} element={<Lost />} />
 					</Route>				
 				</Routes>
