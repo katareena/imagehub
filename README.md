@@ -25,8 +25,7 @@
 ```ssh
 
 git clone https://github.com/katareena/imagehub.git    
-
-$ npm install
-$ npm start
+npm install
+npm start
 
 ```
