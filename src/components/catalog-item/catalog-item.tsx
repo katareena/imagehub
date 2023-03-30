@@ -1,27 +1,23 @@
 import React, { FC } from 'react';
 import './catalog-item.scss';
-import { useGlobalContext } from '../../hooks/use-context';
-import ProgressiveImage from '../image/image';
 import { IImage } from '../../interfaces/image';
 import { useInView } from 'react-intersection-observer';
 import cn from 'classnames';
+import ProgressiveImage from '../image/image';
 
-const CatalogItem: FC<IImage> = (item: IImage): JSX.Element => {
+export interface ICatalogItem {
+  item: IImage,
+  addToFavoritesHandler: (id: number) => void,
+  favorites: IImage[] | [],
+}
+
+const CatalogItem: FC<ICatalogItem> = ({item, addToFavoritesHandler, favorites}): JSX.Element => {
   const { photographer, alt, id } = item;
-  const { favourites, setFavourites } = useGlobalContext();
-  const ids = favourites.map((el) => el.id);
+  const ids = favorites.map((el) => el.id);
   const title = alt || 'Untitled photo';
   const { ref, inView } = useInView({
     threshold: 0.1,
   }); 
-
-  function clickHandler() {
-    setFavourites((prev) => (
-      !ids.includes(id)
-        ? [...prev, item]
-        : prev.filter((el) => el.id !== id)
-    ))
-  }
 
   return (
     <article className='item' ref={ref}>
@@ -37,7 +33,7 @@ const CatalogItem: FC<IImage> = (item: IImage): JSX.Element => {
             <button
               className={cn('item__favorite', {'item__favorite--active': ids.includes(id)})}
               type='button'
-              onClick={clickHandler}
+              onClick={() => addToFavoritesHandler(id)}
             >
               favorite
             </button>

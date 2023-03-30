@@ -9,15 +9,13 @@ import { toCamelCase } from '../utils/to-camel-case';
 import { IImage } from '../interfaces/image';
 import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../constants/constants';
 
-type AppProviderProps = {
+interface AppProviderProps {
   children: JSX.Element,
 };
 
-type ContextProps = {
+interface ContextProps {
   items: IImage[] | [], 
   setItems: Dispatch<React.SetStateAction<IImage[] | []>>,
-  favourites: IImage[] | [], 
-  setFavourites: Dispatch<React.SetStateAction<IImage[] | []>>,
   fetching: boolean,
   setFetching: Dispatch<React.SetStateAction<boolean>>, 
   currentPage: number,
@@ -29,8 +27,7 @@ type ContextProps = {
 const AppContext = createContext<ContextProps | null>(null);
 
 const AppProvider = ({ children }: AppProviderProps) => {
-  const [ items, setItems ] = useState<IImage[] | []>([]);    
-  const [ favourites, setFavourites ] = useState<IImage[] | []>([]);    
+  const [ items, setItems ] = useState<IImage[] | []>([]);
   const [ fetching, setFetching ] = useState<boolean>(true);
   const [ currentPage, setCurrentPage ] = useState<number>(1);
   const [ isNextPage, setIsNextPage ] = useState<boolean>(true);
@@ -59,8 +56,6 @@ const AppProvider = ({ children }: AppProviderProps) => {
     <AppContext.Provider value = {{
       items,
       setItems,
-      favourites,
-      setFavourites,
       fetching,
       setFetching, 
       currentPage,

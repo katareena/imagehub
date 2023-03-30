@@ -121,13 +121,6 @@
   @media screen and (max-width: v.$tabletWidth) {
     padding: 7px 20px;
   }
-
-  &.item__favorite--active {
-    border: solid 1px v.$accent1;
-    color: v.$text-dark;
-
-    background-color: v.$accent1;
-  }
 }
 
 .item__info:first-letter,
@@ -140,6 +133,19 @@
   @media screen and (min-width: v.$tabletWidth) {
     border: solid 1px v.$accent1;
     color: v.$accent1;
-    cursor: pointer;
+  }
+}
+
+.item__favorite--active {
+  border: solid 1px v.$accent1;
+  color: v.$text-dark;
+  background-color: v.$accent1;
+
+  &:hover {
+    @media screen and (min-width: v.$tabletWidth) {
+      border: solid 1px v.$accent1;
+      color: v.$text-dark;
+      background-color: v.$accent1;
+    }
   }
 }

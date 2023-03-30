@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './header.scss';
 import cn from 'classnames';
@@ -7,7 +7,7 @@ import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
 import { AppRoute } from '../../constants/constants';
 
-const Header: FC = (): JSX.Element => {
+const Header = (): JSX.Element => {
   const [ isBurgerOpen, setIsBurgerOpen ] = useState(false);
 
   return (
