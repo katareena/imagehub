@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './header.scss';
 import cn from 'classnames';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
@@ -34,7 +34,20 @@ const Header: FC = (): JSX.Element => {
         <nav className={cn('nav', {'nav--open': isBurgerOpen})}>
           <ul className='nav__list'>
             <li className='nav__item'>
-              <Link className='nav__link' to={AppRoute.MyFavorite}>my favorites</Link>
+              <NavLink
+                className='nav__link'    
+                to={AppRoute.Root}
+              >
+                popular
+              </NavLink>
+            </li>
+            <li className='nav__item'>
+              <NavLink
+                className='nav__link'
+                to={AppRoute.MyFavorite}
+              >
+                favorites
+              </NavLink>
             </li>
           </ul>
         </nav>
