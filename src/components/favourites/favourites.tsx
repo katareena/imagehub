@@ -19,6 +19,8 @@ const Favourites = (): JSX.Element => {
     ))    
   }
 
+  if (!favourites.length) return <div className='info'>Please add something to your favourites...</div>;
+
   return (
     <section className='catalog'>
       <h2 className='visually-hidden'>catalog</h2>
