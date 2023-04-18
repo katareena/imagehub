@@ -9,6 +9,20 @@ import { AppRoute } from '../../constants/constants';
 
 const Header = (): JSX.Element => {
   const [ isBurgerOpen, setIsBurgerOpen ] = useState(false);
+  let windowOffset = 0;
+
+  function clickOpenHandler() {
+    setIsBurgerOpen(!isBurgerOpen);
+    windowOffset = window.scrollY;
+    document.body.setAttribute('style', `position: fixed; top: -${windowOffset}px; left: 0; right: 0;` )
+  }
+
+  function clickCloseHandler() {
+    setIsBurgerOpen(!isBurgerOpen);
+    windowOffset = window.scrollY;
+    document.body.setAttribute('style', '' );
+    window.scrollTo(0, windowOffset);
+  }
 
   return (
     <header className='header'>
@@ -21,17 +35,51 @@ const Header = (): JSX.Element => {
             <span>ImageHub</span>
           </Link>
 
-          <button
-            className='header__burger'
-            type='button'
-            onClick={() => setIsBurgerOpen(!isBurgerOpen)}
-            aria-label='open-close site navigation'
-          >
-            {isBurgerOpen ? <BurgerCloseIcon /> : <BurgerIcon />}
-          </button>
+          {/* {isBurgerOpen ? (
+                      <button
+                        className='header__burger'
+                        type='button'
+                        onClick={clickCloseHandler}
+                        aria-label='open-close site navigation'
+                      >
+                        <BurgerCloseIcon />
+                      </button>
+          ) : (
+            <button
+              className='header__burger'
+              type='button'
+              onClick={clickOpenHandler}
+              aria-label='open-close site navigation'
+            >
+              <BurgerIcon />
+            </button>
+          )} */}
+
+            <button
+              className='header__burger'
+              type='button'
+              onClick={clickOpenHandler}
+              aria-label='open-close site navigation'
+            >
+              <BurgerIcon />
+            </button>
+
+
+
+
         </div>
 
         <nav className={cn('nav', {'nav--open': isBurgerOpen})}>
+        <button
+          className='header__burger-close'
+          type='button'
+          onClick={clickCloseHandler}
+          aria-label='open-close site navigation'
+        >
+          <BurgerCloseIcon />
+        </button>
+
+
           <ul className='nav__list'>
             <li className='nav__item'>
               <NavLink
