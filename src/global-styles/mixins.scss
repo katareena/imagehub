@@ -1,0 +1,16 @@
+@use './variables' as v;
+
+$maxWidth: 1200;
+
+@mixin adaptiv-font($desktopFontSize, $mobileFontSize) {
+	$addSize: $desktopFontSize - $mobileFontSize;
+	$addMobSize: $addSize + $addSize * 0.7;
+
+	@media (min-width: 767px) {
+		font-size: calc(#{$mobileFontSize + px} + #{$addSize} * (100vw / #{$maxWidth}));
+	}
+
+  @media (max-width: 767px) {
+		font-size: calc(#{$mobileFontSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+	}
+}

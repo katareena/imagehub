@@ -5,14 +5,14 @@ import Header from '../../components/header/header';
 
 const MainPage: FC = (): JSX.Element => {
   return (
-    <div className='layout'>
+    <div className="layout">
       <Header />
-      
-      <main className='layout__main'>        
-        <Outlet /> 
-      </main>      
+
+      <main className="layout__main">
+        <Outlet />
+      </main>
     </div>
-  )
-}
+  );
+};
 
 export default MainPage;

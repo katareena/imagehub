@@ -5,13 +5,5 @@
 }
 
 .layout__main {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 45px;
-  position: relative;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    padding: 7px 25px;
-  }
+  
 }

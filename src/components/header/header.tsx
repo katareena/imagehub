@@ -8,29 +8,31 @@ import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
 import { AppRoute } from '../../constants/constants';
 
 const Header = (): JSX.Element => {
-  const [ isBurgerOpen, setIsBurgerOpen ] = useState(false);
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   let windowOffset = 0;
 
   function clickOpenHandler() {
     setIsBurgerOpen(!isBurgerOpen);
     windowOffset = window.scrollY;
-    document.body.setAttribute('style', `position: fixed; top: -${windowOffset}px; left: 0; right: 0;` )
+    document.body.setAttribute(
+      'style',
+      `position: fixed; top: -${windowOffset}px; left: 0; right: 0;`
+    );
   }
 
   function clickCloseHandler() {
     setIsBurgerOpen(!isBurgerOpen);
     windowOffset = window.scrollY;
-    document.body.setAttribute('style', '' );
+    document.body.setAttribute('style', '');
     window.scrollTo(0, windowOffset);
   }
 
   return (
-    <header className='header'>
-      <h1 className='visually-hidden'>ImageHub App</h1>
-      <div className='header__inner'>
-        
-        <div className='header__box'>
-          <Link className='logo' to={AppRoute.Root}>
+    <header className="header">
+      <h1 className="visually-hidden">ImageHub App</h1>
+      <div className="header__inner">
+        <div className="header__box">
+          <Link className="logo" to={AppRoute.Root}>
             <LogoIcon />
             <span>ImageHub</span>
           </Link>
@@ -55,54 +57,42 @@ const Header = (): JSX.Element => {
             </button>
           )} */}
 
-            <button
-              className='header__burger'
-              type='button'
-              onClick={clickOpenHandler}
-              aria-label='open-close site navigation'
-            >
-              <BurgerIcon />
-            </button>
-
-
-
-
+          <button
+            className="header__burger"
+            type="button"
+            onClick={clickOpenHandler}
+            aria-label="open-close site navigation"
+          >
+            <BurgerIcon />
+          </button>
         </div>
 
-        <nav className={cn('nav', {'nav--open': isBurgerOpen})}>
-        <button
-          className='header__burger-close'
-          type='button'
-          onClick={clickCloseHandler}
-          aria-label='open-close site navigation'
-        >
-          <BurgerCloseIcon />
-        </button>
+        <nav className={cn('nav', { 'nav--open': isBurgerOpen })}>
+          <button
+            className="header__burger-close"
+            type="button"
+            onClick={clickCloseHandler}
+            aria-label="open-close site navigation"
+          >
+            <BurgerCloseIcon />
+          </button>
 
-
-          <ul className='nav__list'>
-            <li className='nav__item'>
-              <NavLink
-                className='nav__link'    
-                to={AppRoute.Root}
-              >
+          <ul className="nav__list">
+            <li className="nav__item">
+              <NavLink className="nav__link" to={AppRoute.Root}>
                 popular
               </NavLink>
             </li>
-            <li className='nav__item'>
-              <NavLink
-                className='nav__link'
-                to={AppRoute.Favourites}
-              >
+            <li className="nav__item">
+              <NavLink className="nav__link" to={AppRoute.Favourites}>
                 favourites
               </NavLink>
             </li>
           </ul>
         </nav>
-
       </div>
     </header>
-  )
-}
+  );
+};
 
 export default Header;
