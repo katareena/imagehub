@@ -9,7 +9,6 @@ const Search: FC = (): JSX.Element => {
 
   return (
     <div className='search'>
-      {/* <h2 className='search__title'>find your photos</h2> */}
       <p className='search__text'>
         Quam beatae sapiente facere non nesciunt at id repudiandae, modi iste? Eligendi, rerum!
       </p>
