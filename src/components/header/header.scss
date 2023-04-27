@@ -229,7 +229,11 @@
 }
 
 .header--index {
-  margin-bottom: 200px;
+  margin-bottom: 202px;
+
+  @media screen and (max-width: v.$mobileWidth) {
+    margin-bottom: 190px;
+  }
 
   & .logo {
     color: v.$white;

@@ -31,6 +31,7 @@
 
   @media screen and (max-width: v.$mobileWidth) {
     padding: 0 25px 25px 25px;
+    height: calc(190px + 60px);
   } 
 }
 
