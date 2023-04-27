@@ -34,28 +34,26 @@ const AppProvider = ({ children }: AppProviderProps) => {
   const [isNextPage, setIsNextPage] = useState<boolean>(true);
 
   const fetchData = useCallback(async () => {
-    if (fetching) {
-      try {
-        const response = await fetch(
-          `${URL}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}`,
-          FETCH_OPTIONS
-        );
-        const data = await response.json();
+    try {
+      const response = await fetch(
+        `${URL}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}`,
+        FETCH_OPTIONS
+      );
+      const data = await response.json();
 
-        if (data) {
-          const nextPage = !!data.next_page;
-          const cameliseData = toCamelCase(data.photos);
-          setItems((prevState) => [...prevState, ...cameliseData]);
-          setCurrentPage((prevState) => prevState + 1);
-          setIsNextPage(nextPage);
-        } else {
-          setItems([]);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFetching(false);
+      if (data) {
+        const nextPage = !!data.next_page;
+        const cameliseData = toCamelCase(data.photos);
+        setItems((prevState) => [...prevState, ...cameliseData]);
+        setCurrentPage((prevState) => prevState + 1);
+        setIsNextPage(nextPage);
+      } else {
+        setItems([]);
       }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFetching(false);
     }
   }, [fetching]);
 
@@ -80,8 +78,6 @@ const AppProvider = ({ children }: AppProviderProps) => {
     </AppContext.Provider>
   );
 };
-
-// items, setFetching, isNextPage
 
 export const useGlobalContext = () => {
   const context = useContext(AppContext);

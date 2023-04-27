@@ -33,10 +33,10 @@ const Catalog = (): JSX.Element => {
   };
 
   return (
-    <section className="catalog">
-      <h2 className="visually-hidden">catalog</h2>
+    <section className='catalog'>
+      <h2 className='visually-hidden'>catalog</h2>
 
-      <div className="catalog__box">
+      <div className='catalog__box'>
         {items.map((item, index) => (
           <CatalogItem
             item={item}
@@ -45,7 +45,7 @@ const Catalog = (): JSX.Element => {
             favourites={favourites}
           />
         ))}
-        <div className="loading">Loading...</div>
+        <div className='loading'>Loading...</div>
       </div>
       <div ref={ref}></div>
     </section>

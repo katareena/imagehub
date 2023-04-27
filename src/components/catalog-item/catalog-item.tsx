@@ -21,25 +21,25 @@ const CatalogItem: FC<ICatalogItem> = memo(
     });
 
     return (
-      <article className="item" ref={ref}>
-        <h3 className="visually-hidden">catalog item</h3>
+      <article className='item' ref={ref}>
+        <h3 className='visually-hidden'>catalog item</h3>
 
         {inView && (
           <>
             <ProgressiveImage {...item} />
-            <div className="item__mask">
-              <p className="item__info item__info--decor">
+            <div className='item__mask'>
+              <p className='item__info item__info--decor'>
                 <b>{title}</b>
               </p>
-              <span className="item__decor"></span>
-              <p className="item__info">
+              <span className='item__decor'></span>
+              <p className='item__info'>
                 <i>{photographer}</i>
               </p>
               <button
                 className={cn('item__favourite', {
                   'item__favourite--active': ids.includes(id),
                 })}
-                type="button"
+                type='button'
                 onClick={() => addToFavouritesHandler(id)}
               >
                 favourite
