@@ -5,8 +5,9 @@
   position: sticky;
   top: 0;
   z-index: 4;
-
-  // box-shadow: 0 1px 0 #f7f7f7;
+  background-color: v.$white;
+  box-shadow: 0 1px 0 v.$gray;
+  transition: v.$transition;
 }
 
 .header__inner {
@@ -59,14 +60,6 @@
     line-height: 1;
     font-weight: 700;
     text-transform: uppercase;
-
-    @media screen and (max-width: v.$tabletWidth) {
-      font-size: 26px;
-    }
-
-    @media screen and (max-width: v.$mobileWidth) {
-      font-size: 22px;
-    } 
   }
 }
 
@@ -173,11 +166,9 @@
 
 // ----- special states ----- 
 .header--index {
-  margin-bottom: 202px;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    margin-bottom: 190px;
-  }
+  background-color: transparent;
+  box-shadow: none;
+  transition: v.$transition;
 
   & .logo {
     color: v.$white;

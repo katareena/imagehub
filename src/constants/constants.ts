@@ -1,5 +1,6 @@
 export const URL = 'https://api.pexels.com/v1/curated';
 export const ITEMS_PER_FETCHING = 24;
+export const OFFSET_Y = 100;
 
 export const FETCH_OPTIONS = {
   method: 'GET',

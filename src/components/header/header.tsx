@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './header.scss';
 import cn from 'classnames';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
 import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
-import { AppRoute } from '../../constants/constants';
+import { AppRoute, OFFSET_Y } from '../../constants/constants';
 
 const Header = (): JSX.Element => {
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  let windowOffset = 0;
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);  
   const { pathname } = useLocation();
+  const [ isDarkHeader, setIsDarkHeader ] = useState(true);
+  let windowOffset = 0;  
+
+  useEffect(() => {
+    function scrollHandler() {
+      if (window.scrollY >= OFFSET_Y) {
+        setIsDarkHeader(false);
+      } else {
+        setIsDarkHeader(true);
+      }
+    }
+
+    window.addEventListener('scroll', scrollHandler);
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    }
+  })
 
   function clickOpenHandler() {
     setIsBurgerOpen(!isBurgerOpen);
@@ -29,7 +46,12 @@ const Header = (): JSX.Element => {
   }
 
   return (
-    <header className={cn('header', { 'header--index': pathname === AppRoute.Root })}>
+    <header
+      className={cn('header', { 
+        'header--index': pathname === AppRoute.Root && isDarkHeader,
+
+      })}
+    >
       <h1 className='visually-hidden'>ImageHub App</h1>
       <div className='header__inner'>
         <div className='header__box'>
