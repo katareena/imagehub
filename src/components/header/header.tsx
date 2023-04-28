@@ -5,17 +5,20 @@ import cn from 'classnames';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
 import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
-import { AppRoute, OFFSET_Y } from '../../constants/constants';
+import { AppRoute, MOBILE_WIDTH } from '../../constants/constants';
+import useWindowSize from '../../hooks/use-window-size';
 
 const Header = (): JSX.Element => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);  
   const { pathname } = useLocation();
   const [ isDarkHeader, setIsDarkHeader ] = useState(true);
-  let windowOffset = 0;  
+  let windowOffset = 0; 
+  const [width, ] = useWindowSize();
+  const offsetY = width > MOBILE_WIDTH ? 100 : 70; 
 
   useEffect(() => {
     function scrollHandler() {
-      if (window.scrollY >= OFFSET_Y) {
+      if (window.scrollY >= offsetY) {
         setIsDarkHeader(false);
       } else {
         setIsDarkHeader(true);
