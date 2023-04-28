@@ -1,9 +1,8 @@
 @use '../../global-styles/variables.scss' as v;
+@use '../../global-styles/mixins.scss' as m;
 
 .catalog {
-  width: 100%;
-  max-width: 1200px;  
-  margin: 0 auto;
+  @include m.container;
   padding: 20px 45px;
   position: relative;
 

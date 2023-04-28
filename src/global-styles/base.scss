@@ -1,4 +1,5 @@
 @use './variables.scss' as v;
+@use './mixins.scss' as m;
 @import '../../node_modules/normalize-scss/sass/normalize';
 @include normalize();
 @import './resets.scss';
@@ -79,9 +80,7 @@ button {
 
 .loading {
   display: block;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  @include m.container;
   padding: 20px 0;
   color: v.$text-dark;
 
@@ -91,6 +90,8 @@ button {
 }
 
 .info {
+  @include m.container;
+  padding: 12px 45px;
   color: v.$text-dark;
   font-size: 20px;
 }

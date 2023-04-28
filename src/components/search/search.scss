@@ -124,6 +124,10 @@
 .search__input {
   width: 100%;
   @include m.adaptiv-font(20, 12);
+
+  @media screen and (min-width: v.$maxWidth) {
+    font-size: 20px;
+  }
 }
 
 .search__reset {

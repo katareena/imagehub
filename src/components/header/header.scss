@@ -1,4 +1,5 @@
 @use '../../global-styles/variables.scss' as v;
+@use '../../global-styles/mixins.scss' as m;
 
 .header {
   position: sticky;
@@ -12,9 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  @include m.container;
   padding: 12px 45px;
 
   @media screen and (max-width: v.$mobileWidth) {
@@ -173,6 +172,40 @@
 }
 
 // ----- special states ----- 
+.header--index {
+  margin-bottom: 202px;
+
+  @media screen and (max-width: v.$mobileWidth) {
+    margin-bottom: 190px;
+  }
+
+  & .logo {
+    color: v.$white;
+  }
+
+  & .logo svg {
+    stroke: v.$white;
+  }    
+
+  & .nav__link {
+    color: v.$white;
+
+    @media screen and (max-width: v.$mobileWidth) {
+      color: v.$text-dark;
+    } 
+  }
+
+  & .header__burger svg {
+    @media screen and (max-width: v.$mobileWidth) {
+      stroke: v.$white;
+    }    
+  }
+}
+
+.nav__link.active {
+  color: v.$accent1;
+}
+
 .logo {
   @media screen and (min-width: v.$tabletWidth) {
     cursor: pointer;
@@ -226,38 +259,4 @@
   @media screen and (max-width: v.$mobileWidth) {
     display: block;
   } 
-}
-
-.header--index {
-  margin-bottom: 202px;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    margin-bottom: 190px;
-  }
-
-  & .logo {
-    color: v.$white;
-  }
-
-  & .logo svg {
-    stroke: v.$white;
-  }    
-
-  & .nav__link {
-    color: v.$white;
-
-    @media screen and (max-width: v.$mobileWidth) {
-      color: v.$text-dark;
-    } 
-  }
-
-  & .header__burger svg {
-    @media screen and (max-width: v.$mobileWidth) {
-      stroke: v.$white;
-    }    
-  }
-}
-
-.nav__link.active {
-  color: v.$accent1;
 }

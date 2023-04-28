@@ -14,3 +14,9 @@ $maxWidth: 1200;
 		font-size: calc(#{$mobileFontSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
 	}
 }
+
+@mixin container {
+	width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
