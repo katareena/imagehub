@@ -4,7 +4,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: v.$zi-header;
   background-color: v.$white;
   box-shadow: 0 1px 0 v.$gray;
   transition: v.$transition;
@@ -94,7 +94,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 1;
+    z-index: v.$zi-nav;
 
     animation-name: navClose;
     animation-duration: 1s;

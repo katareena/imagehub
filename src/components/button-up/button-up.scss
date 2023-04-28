@@ -1,0 +1,31 @@
+@use '../../global-styles/variables' as v;
+
+.button-up {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  
+  background-color: v.$gray;
+
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  z-index: v.$zi-button-up;
+
+  @media screen and (min-width: v.$tabletWidth) {
+    &:hover { 
+      background-color: v.$accent1;
+    }    
+  }
+
+  @media screen and (max-width: 1250px) {
+    right: 20px;
+  }
+
+  @media screen and (max-width: v.$mobileWidth) {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 15px;
+  }
+}

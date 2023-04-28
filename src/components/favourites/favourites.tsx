@@ -3,6 +3,7 @@ import { useGlobalContext } from '../../hooks/use-context';
 import useLocalStorage from '../../hooks/use-local-storage';
 import CatalogItem from '../catalog-item/catalog-item';
 import { IImage } from '../../interfaces/image';
+import ButtonUp from '../button-up/button-up';
 
 const Favourites = (): JSX.Element => {
   const { items } = useGlobalContext();
@@ -34,7 +35,9 @@ const Favourites = (): JSX.Element => {
             favourites={favourites}
           />        
         ))}
-      </div>              
+      </div>
+
+      <ButtonUp/>           
     </section>                
   )
 }

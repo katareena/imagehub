@@ -50,6 +50,7 @@ const Header = (): JSX.Element => {
 
   return (
     <header
+      id="top"
       className={cn('header', { 
         'header--index': pathname === AppRoute.Root && isDarkHeader,
 

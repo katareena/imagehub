@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import './catalog.scss';
 import { useGlobalContext } from '../../hooks/use-context';
 import CatalogItem from '../catalog-item/catalog-item';
+import ButtonUp from '../button-up/button-up';
 import useLocalStorage from '../../hooks/use-local-storage';
 import { IImage } from '../../interfaces/image';
 
@@ -48,6 +49,8 @@ const Catalog = (): JSX.Element => {
         <div className='loading'>Loading...</div>
       </div>
       <div ref={ref}></div>
+
+      <ButtonUp/>
     </section>
   );
 };
