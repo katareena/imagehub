@@ -40,4 +40,8 @@
     grid-template-columns: repeat(1, minmax(205px, 1fr));
     gap: 15px;
   }
+
+  &.catalog__box--basic {
+    min-height: auto;
+  }
 }

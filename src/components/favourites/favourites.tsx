@@ -26,7 +26,7 @@ const Favourites = (): JSX.Element => {
     <section className='catalog'>
       <h2 className='visually-hidden'>catalog</h2>
 
-      <div className='catalog__box'>
+      <div className='catalog__box catalog__box--basic'>
         {favourites.map((item: IImage, index: number) => (
           <CatalogItem
             item={item}
