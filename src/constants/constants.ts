@@ -19,4 +19,11 @@ export enum AppRoute {
   NoFoundPage = '*',
 }
 
+export enum InfoTitle {
+  NoFoundImg = 'No Search Result Found!',
+  NoFoundPage = 'No Search Result Found!',
+  Error = 'Something went wrong :( We are doing our best to fix it!',
+  Loading = 'Loading...',
+}
+
 export const WHITESPACE_REGEXP = /[^\s]/gim;

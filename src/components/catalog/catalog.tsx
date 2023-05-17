@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import useLocalStorage from '../../hooks/use-local-storage';
 import useFetch from '../../hooks/use-fetch';
 import { IImage } from '../../interfaces/image';
-import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../../constants/constants';
+import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING, InfoTitle } from '../../constants/constants';
 import CatalogItem from '../catalog-item/catalog-item';
 import ButtonUp from '../button-up/button-up';
 
@@ -47,7 +47,7 @@ const Catalog = (): JSX.Element => {
     );
   };
 
-  if (error) return <div className='info'>Something went wrong!</div>;
+  if (error) return <div className='info'>{InfoTitle.Error}</div>;
 
   return (
     <section className='catalog'>
@@ -62,7 +62,7 @@ const Catalog = (): JSX.Element => {
             favourites={favourites}
           />
         ))}
-        {isNextPage && isLoading && <div className='loading'>Loading...</div>}
+        {isNextPage && isLoading && <div className='info'>{InfoTitle.Loading}</div>}
       </div>
       <div ref={ref}></div>
 

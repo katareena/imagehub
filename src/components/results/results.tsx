@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../hooks/use-context';
 import useFetch from '../../hooks/use-fetch';
 import useLocalStorage from '../../hooks/use-local-storage';
 import { IImage } from '../../interfaces/image';
-import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../../constants/constants';
+import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING, InfoTitle } from '../../constants/constants';
 import CatalogItem from '../catalog-item/catalog-item';
 import ButtonUp from '../button-up/button-up';
 
@@ -47,7 +47,9 @@ const Results = (): JSX.Element => {
     );
   };
 
-  if (error) return <div className='info'>Something went wrong!</div>;
+  if (error) return <div className='info'>{InfoTitle.Error}</div>;
+
+  if (!items.length && !isLoading) return <div className='info'>{InfoTitle.NoFoundImg}</div>;  
 
   return (
     <section className='catalog'>

@@ -55,10 +55,14 @@ const Header = (): JSX.Element => {
     window.scrollTo(0, windowOffset);
   }
 
-  function searchModeResetHandler() {
+  function clickNavHandler() {
     setSearchTerm('');
     setInputValue('');
     setIsSearchActive(false);
+    width <= MOBILE_WIDTH && setIsBurgerOpen(false);
+    windowOffset = window.scrollY;
+    document.body.setAttribute('style', '');
+    window.scrollTo(0, windowOffset);
   }
 
   return (
@@ -73,7 +77,7 @@ const Header = (): JSX.Element => {
           <Link
             className='logo'
             to={AppRoute.Root}
-            onClick={searchModeResetHandler}
+            onClick={clickNavHandler}
           >
             <LogoIcon />
             <span>ImageHub</span>
@@ -107,7 +111,7 @@ const Header = (): JSX.Element => {
               <NavLink
                 className='nav__link'
                 to={AppRoute.Root}
-                onClick={searchModeResetHandler}
+                onClick={clickNavHandler}
               >
                 popular
               </NavLink>
@@ -116,7 +120,7 @@ const Header = (): JSX.Element => {
               <NavLink
                 className='nav__link'
                 to={AppRoute.Favourites}
-                onClick={searchModeResetHandler}
+                onClick={clickNavHandler}
               >
                 favourites
               </NavLink>

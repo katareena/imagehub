@@ -85,7 +85,7 @@ button {
   color: v.$text-dark;
 
   @media screen and (max-width: v.$mobileWidth) {
-    padding: 5px 25px;
+    padding: 5px 0;
   }
 }
 
@@ -93,6 +93,11 @@ button {
   @include m.container;
   padding: 20px 45px;
   color: v.$text-dark;
+  @include m.adaptiv-font(18, 14);
+
+  @media screen and (max-width: v.$mobileWidth) {
+    padding: 10px 25px;
+  }
 }
 
 input {
