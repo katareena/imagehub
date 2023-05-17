@@ -2,76 +2,39 @@ import {
   createContext,
   useContext,
   useState,
-  useEffect,
   Dispatch,
-  useCallback,
+  SetStateAction,
 } from 'react';
-import { toCamelCase } from '../utils/to-camel-case';
-import { IImage } from '../interfaces/image';
-import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../constants/constants';
 
 interface AppProviderProps {
   children: JSX.Element;
 }
 
 interface ContextProps {
-  items: IImage[] | [];
-  setItems: Dispatch<React.SetStateAction<IImage[] | []>>;
-  fetching: boolean;
-  setFetching: Dispatch<React.SetStateAction<boolean>>;
-  currentPage: number;
-  setCurrentPage: Dispatch<React.SetStateAction<number>>;
-  isNextPage: boolean;
-  setIsNextPage: Dispatch<React.SetStateAction<boolean>>;
+  inputValue: string,
+  setInputValue: Dispatch<SetStateAction<string>>,
+  searchTerm: string, 
+  setSearchTerm: Dispatch<SetStateAction<string>>,
+  isSearchActive: boolean,
+  setIsSearchActive: Dispatch<SetStateAction<boolean>>,
 }
 
 const AppContext = createContext<ContextProps | null>(null);
 
 const AppProvider = ({ children }: AppProviderProps) => {
-  const [items, setItems] = useState<IImage[] | []>([]);
-  const [fetching, setFetching] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isNextPage, setIsNextPage] = useState<boolean>(true);
-
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `${URL}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}`,
-        FETCH_OPTIONS
-      );
-      const data = await response.json();
-
-      if (data) {
-        const nextPage = !!data.next_page;
-        const cameliseData = toCamelCase(data.photos);
-        setItems((prevState) => [...prevState, ...cameliseData]);
-        setCurrentPage((prevState) => prevState + 1);
-        setIsNextPage(nextPage);
-      } else {
-        setItems([]);
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setFetching(false);
-    }
-  }, [fetching]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const [ inputValue, setInputValue ] = useState<string>('');
+  const [ searchTerm, setSearchTerm ] = useState<string>('');
+  const [ isSearchActive, setIsSearchActive ] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
       value={{
-        items,
-        setItems,
-        fetching,
-        setFetching,
-        currentPage,
-        setCurrentPage,
-        isNextPage,
-        setIsNextPage,
+        searchTerm,
+        setSearchTerm,
+        isSearchActive,
+        setIsSearchActive,
+        inputValue,
+        setInputValue,
       }}
     >
       {children}
@@ -79,7 +42,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
   );
 };
 
-export const useGlobalContext = () => {
+const useGlobalContext = () => {
   const context = useContext(AppContext);
   if (context === null) {
     throw new Error('AppContext must be inside a Provider with a value');
@@ -87,4 +50,4 @@ export const useGlobalContext = () => {
   return context;
 };
 
-export { AppContext, AppProvider };
+export { AppProvider, useGlobalContext };

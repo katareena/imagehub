@@ -14,13 +14,6 @@
   color: v.$white;
   position: relative;
 
-  // animation-name: base;
-  // animation-duration: 1s;  
-
-  // @media screen and (max-width: v.$desktopWidth) {
-  //   animation-name: baseMobile;
-  // }
-
   @media screen and (max-width: v.$tabletWidth) {
     padding: 0 45px 30px 45px;
   }
@@ -50,58 +43,6 @@
     transform: translateX(0) translateY(-60px);
   }
 }
-
-// @keyframes active {
-//   from {
-//     height: 43vh;  
-//   }
-// 	to {
-//     height: calc(100vh - 59px - 532px);
-//   }
-// }
-
-// @keyframes base {
-//   from {
-//     height: calc(100vh - 59px - 532px);
-//   }
-// 	to {
-//     height: 43vh;    
-//   }
-// }
-
-// @keyframes activeMobile {
-//   from {
-//     height: 43vh;  
-//   }
-// 	to {
-//     height: 15vh;
-//   }
-// }
-
-// @keyframes baseMobile {
-//   from {
-//     height: 15vh;
-//   }
-// 	to {
-//     height: 43vh;    
-//   }
-// }
-
-// .search--active {
-//   height: calc(100vh - 59px - 532px);
-//   // animation-name: active;
-//   // animation-duration: 1s;
-
-//   @media screen and (max-width: v.$desktopWidth) {
-//     height: 15vh;
-//     // animation-name: activeMobile;
-//   }
-// }
-
-// .search--active .search__title,
-// .search--active .search__text {
-//   display: none;
-// }
 
 .search__text {
   line-height: 1.2;
@@ -143,7 +84,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  @include m.adaptiv-font(20, 14);
+  @include m.adaptiv-font(18, 14);
   letter-spacing: -0.4px;
 
   @media screen and (min-width: v.$maxWidth) {
@@ -157,11 +98,11 @@
   display: none;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
 
   & svg {
     stroke: v.$text-dark;
-    transform: scale(0.8);
+    transform: scale(0.6);
+    margin-top: 2px;
   }
 }
 

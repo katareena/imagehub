@@ -1,23 +1,15 @@
 import React from 'react';
-import { useGlobalContext } from '../../hooks/use-context';
 import useLocalStorage from '../../hooks/use-local-storage';
 import CatalogItem from '../catalog-item/catalog-item';
 import { IImage } from '../../interfaces/image';
 import ButtonUp from '../button-up/button-up';
 
 const Favourites = (): JSX.Element => {
-  const { items } = useGlobalContext();
   const [ favourites, setFavourites ] = useLocalStorage([], 'favourites');
 
-  const addToFavouritesHandler = (id: number) => {
-    const isSelectedItems = favourites.find((item: IImage) => item.id === id);
-    const newItem = items.find((item: IImage) => item.id === id);
-
-    setFavourites((prev: IImage[]) => (      
-      isSelectedItems
-        ? prev.filter((el: IImage) => el.id !== id) 
-        : [...prev, newItem]
-    ))    
+  const removeFromFavouritesHandler = (id: number) => {
+    const newFavourites = favourites.filter((item: IImage) => item.id !== id);
+    setFavourites(newFavourites);
   }
 
   if (!favourites.length) return <div className='info'>Please add something to your favourites...</div>;
@@ -31,7 +23,7 @@ const Favourites = (): JSX.Element => {
           <CatalogItem
             item={item}
             key={`${item.id}-${index}`}
-            addToFavouritesHandler={addToFavouritesHandler}
+            favouritesHandler={removeFromFavouritesHandler}
             favourites={favourites}
           />        
         ))}

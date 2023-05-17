@@ -91,9 +91,8 @@ button {
 
 .info {
   @include m.container;
-  padding: 12px 45px;
+  padding: 20px 45px;
   color: v.$text-dark;
-  font-size: 20px;
 }
 
 input {

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import './catalog.scss';
 import { useInView } from 'react-intersection-observer';
-import useLocalStorage from '../../hooks/use-local-storage';
+import { useGlobalContext } from '../../hooks/use-context';
 import useFetch from '../../hooks/use-fetch';
+import useLocalStorage from '../../hooks/use-local-storage';
 import { IImage } from '../../interfaces/image';
 import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING } from '../../constants/constants';
 import CatalogItem from '../catalog-item/catalog-item';
 import ButtonUp from '../button-up/button-up';
 
-const Catalog = (): JSX.Element => {
+const Results = (): JSX.Element => {
   const { fetchData, items, error, currentPage, isLoading, isNextPage } = useFetch();
   const [ fetchMore, setFetchMore ] = useState(true);
-    
+  const { searchTerm } = useGlobalContext();
+
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '100px 0px 0px 0px',
@@ -26,13 +27,12 @@ const Catalog = (): JSX.Element => {
   useEffect(() => {
     if (fetchMore) {
       fetchData(
-        `${URL.Resource}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}`,
+        `${URL.Search}?page=${currentPage}&per_page=${ITEMS_PER_FETCHING}&query=${searchTerm}`,
         FETCH_OPTIONS
       );
     } 
     setFetchMore(false);
   }, [fetchData, fetchMore]);
-
 
   const [favourites, setFavourites] = useLocalStorage([], 'favourites');
 
@@ -66,9 +66,9 @@ const Catalog = (): JSX.Element => {
       </div>
       <div ref={ref}></div>
 
-      <ButtonUp/>
-    </section>
-  );
-};
+      <ButtonUp/>           
+    </section>                
+  )
+}
 
-export default Catalog;
+export default Results;

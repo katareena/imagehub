@@ -2,14 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './header.scss';
 import cn from 'classnames';
+import useWindowSize from '../../hooks/use-window-size';
+import { useGlobalContext } from '../../hooks/use-context';
+import { AppRoute, MOBILE_WIDTH } from '../../constants/constants';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
 import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
-import { AppRoute, MOBILE_WIDTH } from '../../constants/constants';
-import useWindowSize from '../../hooks/use-window-size';
 import Search from '../search/search';
 
 const Header = (): JSX.Element => {
+  const {
+    setSearchTerm,
+    setIsSearchActive,
+    setInputValue,
+  } = useGlobalContext();
   const [ isBurgerOpen, setIsBurgerOpen] = useState(false);  
   const { pathname } = useLocation();
   const [ isDarkHeader, setIsDarkHeader ] = useState(true);
@@ -49,6 +55,12 @@ const Header = (): JSX.Element => {
     window.scrollTo(0, windowOffset);
   }
 
+  function searchModeResetHandler() {
+    setSearchTerm('');
+    setInputValue('');
+    setIsSearchActive(false);
+  }
+
   return (
     <header
       className={cn('header', { 
@@ -58,7 +70,11 @@ const Header = (): JSX.Element => {
       <h1 className='visually-hidden'>ImageHub App</h1>
       <div className='header__inner'>
         <div className='header__box'>
-          <Link className='logo' to={AppRoute.Root}>
+          <Link
+            className='logo'
+            to={AppRoute.Root}
+            onClick={searchModeResetHandler}
+          >
             <LogoIcon />
             <span>ImageHub</span>
           </Link>
@@ -88,12 +104,20 @@ const Header = (): JSX.Element => {
 
           <ul className='nav__list'>
             <li className='nav__item'>
-              <NavLink className='nav__link' to={AppRoute.Root}>
+              <NavLink
+                className='nav__link'
+                to={AppRoute.Root}
+                onClick={searchModeResetHandler}
+              >
                 popular
               </NavLink>
             </li>
             <li className='nav__item'>
-              <NavLink className='nav__link' to={AppRoute.Favourites}>
+              <NavLink
+                className='nav__link'
+                to={AppRoute.Favourites}
+                onClick={searchModeResetHandler}
+              >
                 favourites
               </NavLink>
             </li>

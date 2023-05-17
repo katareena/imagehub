@@ -1,4 +1,7 @@
-export const URL = 'https://api.pexels.com/v1/curated';
+export enum URL {
+  Resource = 'https://api.pexels.com/v1/curated',
+  Search = 'https://api.pexels.com/v1/search/'
+}
 export const ITEMS_PER_FETCHING = 24;
 export const MOBILE_WIDTH = 576;
 
@@ -12,5 +15,8 @@ export const FETCH_OPTIONS = {
 export enum AppRoute {
   Root = '/',
   Favourites = '/favourites',
+  Search = '/search',
   NoFoundPage = '*',
 }
+
+export const WHITESPACE_REGEXP = /[^\s]/gim;

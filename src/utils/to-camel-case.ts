@@ -1,10 +1,14 @@
-import { IDataImage } from '../interfaces/image';
+import { IDataImage, IImage } from '../interfaces/image';
+const _ = require('lodash');
+// import { mapKeys, camelCase } from 'lodash';
+// import _ from 'lodash';
 
-export function toCamelCase(array: IDataImage[] ) {
-  return array.map((dataObj) => JSON.parse(
-    JSON.stringify(dataObj).trim().replace(/('\w+':)/g,
-      (keys) => keys.replace(/[A-Z]+/g, (letter, index) => index === 0 ? letter.toLowerCase() : `_${letter.toLowerCase()}`)
-        .replace(/(.(_|-|\s)+.)/g, (subStr) => subStr[0]+(subStr[subStr.length-1].toUpperCase()))),
-    ),
-  );
-}
+function toCamelCase(array: IDataImage[]): IImage[]  {
+  return array.map((obj: IDataImage) => {
+    return _.mapKeys(obj, function(value: any, key: string) {
+      return _.camelCase(key);
+    })
+  })
+};
+
+export default toCamelCase;

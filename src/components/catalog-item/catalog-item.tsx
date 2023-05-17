@@ -7,12 +7,12 @@ import ProgressiveImage from '../image/image';
 
 export interface ICatalogItem {
   item: IImage;
-  addToFavouritesHandler: (id: number) => void;
+  favouritesHandler: (id: number) => void;
   favourites: IImage[] | [];
 }
 
 const CatalogItem: FC<ICatalogItem> = memo(
-  ({ item, addToFavouritesHandler, favourites }): JSX.Element => {
+  ({ item, favouritesHandler, favourites }): JSX.Element => {
     const { photographer, alt, id } = item;
     const ids = favourites.map((el) => el.id);
     const title = alt || 'Untitled photo';
@@ -40,7 +40,7 @@ const CatalogItem: FC<ICatalogItem> = memo(
                   'item__favourite--active': ids.includes(id),
                 })}
                 type='button'
-                onClick={() => addToFavouritesHandler(id)}
+                onClick={() => favouritesHandler(id)}
               >
                 favourite
               </button>

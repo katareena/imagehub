@@ -1,14 +1,57 @@
-import React, { FC, useRef, useEffect } from 'react';
+import React, { FC, FormEvent } from 'react';
 import './search.scss';
+import cn from 'classnames';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../../hooks/use-context';
+import { WHITESPACE_REGEXP, AppRoute } from '../../constants/constants';
 import { ReactComponent as LoupeIcon } from '../../assets/icon-loupe.svg';
 import { ReactComponent as ResetIcon } from '../../assets/icon-close.svg';
 
 const Search: FC = (): JSX.Element => {
-  const searchInput = useRef<HTMLInputElement>(null);
-  useEffect(() => searchInput.current?.focus(), []);
+  const {
+    setSearchTerm,
+    isSearchActive,
+    setIsSearchActive,
+    inputValue,
+    setInputValue,
+  } = useGlobalContext();
+  const navigate = useNavigate();
+
+  function resetHandler() {
+    setSearchTerm('');
+    setIsSearchActive(false);
+    setInputValue('');
+    navigate(AppRoute.Root);
+  }
+
+  function changeHandler(evt: FormEvent<HTMLInputElement>) {
+    if (evt.currentTarget.value.length > 0) {
+      setInputValue(evt.currentTarget.value);
+   } else {
+      resetHandler();
+   }
+ }
+
+  function submitHandler(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+
+    if((!WHITESPACE_REGEXP.test(inputValue))) { //if only spaces are entered      
+      setInputValue('');
+      // setResultTitle(SearchTitle.NoEnter);
+    } else {
+      setSearchTerm(inputValue);
+      setIsSearchActive(true);
+      navigate(AppRoute.Search);     
+    }  
+  }
 
   return (
-    <form className='search__form' method='get' action='#'>
+    <form
+      className='search__form'
+      method='get'
+      action='#'
+      onSubmit={submitHandler}  
+    >
       <div className='search__box'>
         <label
           className='visually-hidden'
@@ -23,13 +66,15 @@ const Search: FC = (): JSX.Element => {
           id='search'
           autoComplete='off'
           placeholder='Search...'
+          value={inputValue} 
+          onChange={changeHandler}
           required
-          ref={searchInput}
         />
         <button
-          className='search__reset'
+          className={cn('search__reset', {'search__reset--active': isSearchActive})}
           type='button'
           aria-label='reset search'
+          onClick={resetHandler}
         >
           <ResetIcon />
         </button>
