@@ -6,6 +6,7 @@ const Popular: FC = (): JSX.Element => {
   return (
     <>
       <div className='search'>
+        <div className='search__bg'></div>
         <p className='search__text'>
           Quam beatae sapiente facere non nesciunt at id repudiandae, modi iste? Eligendi, rerum!
         </p>

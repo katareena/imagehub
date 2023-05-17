@@ -5,10 +5,10 @@ import Header from '../../components/header/header';
 
 const LayoutPage: FC = (): JSX.Element => {
   return (
-    <div className="layout">
+    <div className='layout'>
       <Header />
 
-      <main className="layout__main">
+      <main className='layout__main'>
         <Outlet />
       </main>
     </div>

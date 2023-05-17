@@ -24,23 +24,23 @@
   } 
 }
 
-.search::before {
-  content: '';
+.search__bg {
+  position: relative;
   width: 100vw;
   height: calc(200px + 64px);
+  flex-shrink: 0;
 
   background: url('../../assets/bg.jpg') center/cover no-repeat;
   background-color: v.$gray;
-  transform: translateX(0) translateY(-64px);
+  filter: brightness(60%);
 
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: v.$zi-bg-search;
 
   @media screen and (max-width: v.$mobileWidth) {
     height: calc(190px + 60px);
-    transform: translateX(0) translateY(-60px);
   }
 }
 

@@ -21,7 +21,6 @@ export enum AppRoute {
 
 export enum InfoTitle {
   NoFoundImg = 'No Search Result Found!',
-  NoFoundPage = 'No Search Result Found!',
   Error = 'Something went wrong :( We are doing our best to fix it!',
   Loading = 'Loading...',
 }

@@ -37,7 +37,6 @@ const Search: FC = (): JSX.Element => {
 
     if((!WHITESPACE_REGEXP.test(inputValue))) { //if only spaces are entered      
       setInputValue('');
-      // setResultTitle(SearchTitle.NoEnter);
     } else {
       setSearchTerm(inputValue);
       setIsSearchActive(true);
