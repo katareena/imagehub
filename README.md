@@ -4,8 +4,9 @@
 * [Pexels API integration](https://www.pexels.com/api/documentation);
 * Adaptive layout;
 * Cross-browser compatibility (Chrome, Firefox);
-* Infinite scrolling;
+* Infinite scrolling (virtualization in process);
 * Favouriting;
+* Searching;
 * Lazy-loading images.
 
 #### 🏠 [Homepage](https://github.com/katareena/imagehub)
