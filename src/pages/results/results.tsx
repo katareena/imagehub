@@ -9,15 +9,14 @@ import {
   URL,
   FETCH_OPTIONS,
   ITEMS_PER_FETCHING,
-  InfoTitle,
+  InfoText,
   HEADER_HEIGHT,
   ITEM_HEIGHT,
 } from '../../constants/constants';
 import { getElementsInRow } from '../../utils/adaptive-elements';
 import { toMatrix } from '../../utils/to-matrix';
 import ScrollVirtualizer from '../../components/scroll-virtualizer/scroll-virtualizer';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../constants/constants';
+import InfoMessage from '../../components/info-message/info-message';
 
 const Results = (): JSX.Element => {
   const { fetchData, items, error, currentPage, isLoading, isNextPage } =
@@ -64,16 +63,18 @@ const Results = (): JSX.Element => {
 
   if (error)
     return (
-      <>
-        <p className="info">{InfoTitle.Error}</p>
-        <Link className="lost__link" to={AppRoute.Root}>
-          {'<< Back to Home Page'}
-        </Link>
-      </>
+      <InfoMessage 
+        text={InfoText.Error}
+        goToRoot={true}
+      /> 
     );
 
-  if (!items.length && !isLoading)
-    return <div className="info">{InfoTitle.NoFoundImg}</div>;
+  if (!items.length && !isLoading) return (
+    <InfoMessage 
+      text={InfoText.NotFoundImg}
+      goToRoot={false}
+    /> 
+  );
 
   return (
     <section>
@@ -87,7 +88,10 @@ const Results = (): JSX.Element => {
       >
         <div className="catalog__fetching" ref={ref}></div>
         {isNextPage && isLoading && (
-          <div className="info">{InfoTitle.Loading}</div>
+          <InfoMessage 
+            text={InfoText.Loading}
+            goToRoot={false}
+          />           
         )}
       </ScrollVirtualizer>
     </section>

@@ -78,32 +78,6 @@ button {
   }
 }
 
-.loading {
-  display: block;
-  @include m.container;
-  @include m.containerPaddings;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: v.$text-dark;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    padding: 5px 0;
-  }
-}
-
-.info {
-  @include m.container;
-  @include m.containerPaddings;
-  @include m.adaptiv-font(18, 14); 
-  @include m.lostText;
-  padding-top: 20px;
-  padding-bottom: 10px;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    padding-top: 10px;
-  }
-}
-
 input {
   font-family: 'Lato', 'Arial', sans-serif;
   transition: v.$transition;

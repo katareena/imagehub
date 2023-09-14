@@ -2,7 +2,9 @@ import React from 'react';
 import './favourites.scss';
 import useLocalStorage from '../../hooks/use-local-storage';
 import { IImage } from '../../interfaces/image';
+import { InfoText } from '../../constants/constants';
 import CatalogItem from '../../components/catalog-item/catalog-item';
+import InfoMessage from '../../components/info-message/info-message';
 
 const Favourites = (): JSX.Element => {
   const [ favourites, setFavourites ] = useLocalStorage([], 'favourites');
@@ -14,7 +16,10 @@ const Favourites = (): JSX.Element => {
 
   if (!favourites.length)
     return (
-      <div className="info">Please add something to your favourites...</div>
+      <InfoMessage 
+        text={InfoText.EmptyFavourites}
+        goToRoot={false}
+      /> 
     );
 
   return (

@@ -42,7 +42,7 @@ const ScrollVirtualizer: FC<ScrollVirtualizerProps> = ({
   return (
     <div
       style={{ 
-        height: rowHeight * visibleRows + 1, // rowHeight * visibleRows + 1,
+        height: rowHeight * visibleRows + 1,
         overflow: 'auto' 
         }} 
       onScroll={onScroll}

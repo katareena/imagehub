@@ -1,20 +1,19 @@
 @use '../../global-styles/variables.scss' as v;
 @use '../../global-styles/mixins' as m;
+
+.info-message {
+  @include m.container;
+  @include m.containerPaddings;
+  margin-top: 20px;
+}
   
-.lost__title {  
+.info-message__text {  
   @include m.adaptiv-font(18, 14);  
   @include m.lostText;
-  font-weight: 400;
-  margin-top: 5px;
+
 }
 
-.lost__text {  
-  @include m.adaptiv-font(18, 14);  
-  @include m.lostText;
-  font-size: 20px;
-}
-
-.lost__link {
+.info-message__link {
   @include m.lostText;
   font-size: 14px;
   
