@@ -46,7 +46,7 @@ const Results = (): JSX.Element => {
       );
     }
     setFetchMore(false);
-  }, [fetchData, fetchMore]);
+  }, [fetchData, fetchMore, searchTerm]);
 
   const [favourites, setFavourites] = useLocalStorage([], 'favourites');
 

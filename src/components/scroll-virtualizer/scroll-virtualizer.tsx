@@ -1,4 +1,4 @@
-import React, { FC, useState, ReactNode } from 'react';
+import React, { FC, useState, ReactNode, UIEvent } from 'react';
 import { IImage } from '../../interfaces/image';
 import CatalogItem from '../catalog-item/catalog-item';
 
@@ -32,10 +32,12 @@ const ScrollVirtualizer: FC<ScrollVirtualizerProps> = ({
     return rowHeight * (data.length - (start + visibleRows + 1));
   }
 
-  function onScroll(event: any) {
+  function onScroll(event: UIEvent<HTMLElement>) {
+    const target = event.target as HTMLElement;
+    
     setStart(Math.min(
       data.length - visibleRows - 1,
-      Math.floor(event.target.scrollTop < 0 ? 0 : event.target.scrollTop / rowHeight) // safari fix
+      Math.floor(target.scrollTop < 0 ? 0 : target.scrollTop / rowHeight) // safari fix
     ));
   }  
 

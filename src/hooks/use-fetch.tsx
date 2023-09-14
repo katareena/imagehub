@@ -21,13 +21,18 @@ function useFetch() {
       const cameliseData = toCamelCase(json.photos);
       const nextPage = !!json.next_page;
       const totalItems = json.total_results;
-      setItems((prevState) => [...prevState, ...cameliseData]);
+      setItems((prevState) => {
+        const dictionary: {[key: number]: boolean} = {};
+        prevState.forEach((item: IImage) => dictionary[item.id] = true);
+        return [...prevState, ...cameliseData.filter((elem) => !dictionary[elem.id])];
+      });
       setCurrentPage((prevState) => prevState + 1);
       setIsNextPage(nextPage);
       setTotal(totalItems);
 
     } catch (error: any) {
       setError(error.message || 'Something went wrong!');
+      console.log(error.message)
     }
 
     setIsLoading(false);
