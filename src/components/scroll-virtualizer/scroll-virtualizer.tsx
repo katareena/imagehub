@@ -22,7 +22,7 @@ const ScrollVirtualizer: FC<ScrollVirtualizerProps> = ({
   elementsInRow,
 }) => {
   const [ start, setStart ] = useState(0);
-  const getItemHeight = (elementsInRow: number): number => 100 / elementsInRow;  
+  const getItemWidth = (elementsInRow: number): number => 100 / elementsInRow;  
   
   function getTopHeight() {
     return rowHeight * start;
@@ -42,7 +42,7 @@ const ScrollVirtualizer: FC<ScrollVirtualizerProps> = ({
   return (
     <div
       style={{ 
-        height: rowHeight * visibleRows + 1,
+        height: rowHeight * visibleRows + 1, // rowHeight * visibleRows + 1,
         overflow: 'auto' 
         }} 
       onScroll={onScroll}
@@ -61,7 +61,7 @@ const ScrollVirtualizer: FC<ScrollVirtualizerProps> = ({
             >
               {row.map((item) => (
                 <td
-                  style={{ width: `${getItemHeight(elementsInRow)}%`}}
+                  style={{ width: `${getItemWidth(elementsInRow)}%`}}
                   key={item.id}
                 >                  
                   <CatalogItem

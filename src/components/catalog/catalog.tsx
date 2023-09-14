@@ -16,7 +16,7 @@ const Catalog = (): JSX.Element => {
   const [ width, height] = useWindowSize();
   const elementsInRow = getElementsInRow(width);
   const sercherHeight = getSercherHeight(width);
-  const visibleRows = Math.ceil((height - HEADER_HEIGHT - sercherHeight) / ITEM_HEIGHT);
+  const visibleRows = (height - HEADER_HEIGHT - sercherHeight) / ITEM_HEIGHT;
     
   const { ref, inView } = useInView({
     threshold: 0,
