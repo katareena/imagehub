@@ -24,7 +24,6 @@ const CatalogItem: FC<ICatalogItem> = memo(
       <article className='item' ref={ref}>
         <h3 className='visually-hidden'>catalog item</h3>
 
-        {inView && (
           <>
             <ProgressiveImage {...item} />
             <div className='item__mask'>
@@ -46,7 +45,7 @@ const CatalogItem: FC<ICatalogItem> = memo(
               </button>
             </div>
           </>
-        )}
+
       </article>
     );
   }

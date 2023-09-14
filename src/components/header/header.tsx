@@ -8,20 +8,17 @@ import { AppRoute, MOBILE_WIDTH } from '../../constants/constants';
 import { ReactComponent as BurgerIcon } from '../../assets/icon-burger.svg';
 import { ReactComponent as LogoIcon } from '../../assets/icon-airguard.svg';
 import { ReactComponent as BurgerCloseIcon } from '../../assets/icon-close.svg';
-import Search from '../search/search';
+import SearchForm from '../search-form/search-form';
 
 const Header = (): JSX.Element => {
-  const {
-    setSearchTerm,
-    setIsSearchActive,
-    setInputValue,
-  } = useGlobalContext();
-  const [ isBurgerOpen, setIsBurgerOpen] = useState(false);  
+  const { setSearchTerm, setIsSearchActive, setInputValue } =
+    useGlobalContext();
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const { pathname } = useLocation();
-  const [ isDarkHeader, setIsDarkHeader ] = useState(true);
-  let windowOffset = 0; 
-  const [ width, ] = useWindowSize();
-  const offsetY = width > MOBILE_WIDTH ? 100 : 70; 
+  const [isDarkHeader, setIsDarkHeader] = useState(true);
+  let windowOffset = 0;
+  const [width] = useWindowSize();
+  const offsetY = width > MOBILE_WIDTH ? 100 : 70;
 
   useEffect(() => {
     function scrollHandler() {
@@ -36,8 +33,8 @@ const Header = (): JSX.Element => {
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
-    }
-  })
+    };
+  });
 
   function clickOpenHandler() {
     setIsBurgerOpen(!isBurgerOpen);
@@ -67,30 +64,26 @@ const Header = (): JSX.Element => {
 
   return (
     <header
-      className={cn('header', { 
+      className={cn('header', {
         'header--dark-theme': pathname === AppRoute.Root && isDarkHeader,
       })}
     >
-      <h1 className='visually-hidden'>ImageHub App</h1>
-      <div className='header__inner'>
-        <div className='header__box'>
-          <Link
-            className='logo'
-            to={AppRoute.Root}
-            onClick={clickNavHandler}
-          >
+      <h1 className="visually-hidden">ImageHub App</h1>
+      <div className="header__inner">
+        <div className="header__box">
+          <Link className="logo" to={AppRoute.Root} onClick={clickNavHandler}>
             <LogoIcon />
             <span>ImageHub</span>
           </Link>
 
-          {pathname === AppRoute.Root && !isDarkHeader && <Search/>}
-          {pathname !== AppRoute.Root && <Search/>}
+          {pathname === AppRoute.Root && !isDarkHeader && <SearchForm />}
+          {pathname !== AppRoute.Root && <SearchForm />}
 
           <button
-            className='header__burger'
-            type='button'
+            className="header__burger"
+            type="button"
             onClick={clickOpenHandler}
-            aria-label='open-close site navigation'
+            aria-label="open-close site navigation"
           >
             <BurgerIcon />
           </button>
@@ -98,27 +91,27 @@ const Header = (): JSX.Element => {
 
         <nav className={cn('nav', { 'nav--open': isBurgerOpen })}>
           <button
-            className='header__burger-close'
-            type='button'
+            className="header__burger-close"
+            type="button"
             onClick={clickCloseHandler}
-            aria-label='open-close site navigation'
+            aria-label="open-close site navigation"
           >
             <BurgerCloseIcon />
           </button>
 
-          <ul className='nav__list'>
-            <li className='nav__item'>
+          <ul className="nav__list">
+            <li className="nav__item">
               <NavLink
-                className='nav__link'
+                className="nav__link"
                 to={AppRoute.Root}
                 onClick={clickNavHandler}
               >
                 popular
               </NavLink>
             </li>
-            <li className='nav__item'>
+            <li className="nav__item">
               <NavLink
-                className='nav__link'
+                className="nav__link"
                 to={AppRoute.Favourites}
                 onClick={clickNavHandler}
               >

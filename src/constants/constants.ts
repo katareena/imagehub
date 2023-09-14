@@ -2,8 +2,11 @@ export enum URL {
   Resource = 'https://api.pexels.com/v1/curated',
   Search = 'https://api.pexels.com/v1/search/'
 }
-export const ITEMS_PER_FETCHING = 24;
+export const ITEMS_PER_FETCHING = 60;
 export const MOBILE_WIDTH = 576;
+export const HEADER_HEIGHT = 54;
+export const SEARCHER_HEIGHT = 180;
+export const ITEM_HEIGHT = 200;
 
 export const FETCH_OPTIONS = {
   method: 'GET',

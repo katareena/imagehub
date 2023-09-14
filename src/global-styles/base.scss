@@ -28,7 +28,7 @@ body {
   color: v.$text-light;
   background-color: v.$white;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
 }
 
@@ -81,7 +81,9 @@ button {
 .loading {
   display: block;
   @include m.container;
-  padding: 20px 0;
+  @include m.containerPaddings;
+  padding-top: 20px;
+  padding-bottom: 20px;
   color: v.$text-dark;
 
   @media screen and (max-width: v.$mobileWidth) {
@@ -91,12 +93,14 @@ button {
 
 .info {
   @include m.container;
-  padding: 20px 45px;
-  color: v.$text-dark;
-  @include m.adaptiv-font(18, 14);
+  @include m.containerPaddings;
+  @include m.adaptiv-font(18, 14); 
+  @include m.lostText;
+  padding-top: 20px;
+  padding-bottom: 10px;
 
   @media screen and (max-width: v.$mobileWidth) {
-    padding: 10px 25px;
+    padding-top: 10px;
   }
 }
 

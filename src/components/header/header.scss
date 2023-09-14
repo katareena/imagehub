@@ -14,10 +14,13 @@
   display: flex;
   align-items: center;
   @include m.container;
-  padding: 12px 45px;
+  @include m.containerPaddings;
+  padding-top: 12px;
+  padding-bottom: 12px;
 
   @media screen and (max-width: v.$mobileWidth) {
-    padding: 5px 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 
@@ -29,7 +32,7 @@
   @media screen and (max-width: v.$mobileWidth) {
     justify-content: space-between;
     width: 100%;
-  }  
+  }
 }
 
 .logo {
@@ -38,29 +41,30 @@
   width: max-content;
   color: v.$text-dark;
   margin-right: 15px;
+  min-height: 35px;
 
   & svg {
     stroke: v.$text-dark;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin-right: 5px;
     transition: v.$transition;
-    margin-left: -5px;
+    margin-left: -3px;
 
-    @media screen and (max-width: v.$tabletWidth) {
-      width: 40px;
-      height: 40px;
+    @media screen and (max-width: v.$mobileWidth) {
+      width: 35px;
+      height: 35px;
       margin-right: 0;
     }
   }
 
   & span {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1;
     font-weight: 700;
     text-transform: uppercase;
 
-    @media screen and (max-width: v.$tabletWidth) {
+    @media screen and (max-width: v.$mobileWidth) {
       display: none;
     }
   }
@@ -72,24 +76,29 @@
 
 .header__burger {
   display: none;
-  width: 50px;
-  height: 50px;
-  margin-right: -7px;
-  margin-left: 10px;
+
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-left: 4px;
+  margin-right: -9px;
+  margin-top: 3px;
   transition: all 300ms ease-in-out;
 
   & svg {
     stroke: v.$text-dark;
+    stroke-width: 1.5px;
+    transform: scale(0.8);
   }
 
   @media screen and (max-width: v.$mobileWidth) {
     display: block;
-  }  
+  }
 }
 
 .nav {
   position: relative;
-  transform: translateX(0);  
+  transform: translateX(0);
 
   @media screen and (max-width: v.$mobileWidth) {
     height: 100%;
@@ -97,7 +106,7 @@
     padding: 60px 0 30px 0;
     background-color: v.$white;
     box-shadow: v.$box-shadow;
-    transform: translateX(105%);  
+    transform: translateX(105%);
 
     position: fixed;
     right: 0;
@@ -106,14 +115,14 @@
 
     animation-name: navClose;
     animation-duration: 1s;
-  } 
+  }
 }
 
 @keyframes navOpen {
   from {
-    transform: translateX(105%);    
+    transform: translateX(105%);
   }
-	to {
+  to {
     transform: translateX(0);
   }
 }
@@ -122,8 +131,8 @@
   from {
     transform: translateX(0);
   }
-	to {
-    transform: translateX(105%);    
+  to {
+    transform: translateX(105%);
   }
 }
 
@@ -145,12 +154,12 @@
 
   @media screen and (max-width: v.$mobileWidth) {
     margin-left: 0;
-    width: 100%;  
+    width: 100%;
   }
 }
 
 .nav__link {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
   font-weight: 500;
   white-space: nowrap;
@@ -158,7 +167,7 @@
   text-transform: capitalize;
 
   @media screen and (max-width: v.$tabletWidth) {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   @media screen and (max-width: v.$mobileWidth) {
@@ -169,10 +178,10 @@
     width: 100%;
     height: 45px;
     padding: 0 30px 0 30px;
-  }  
+  }
 }
 
-// ----- special states ----- 
+// ----- special behavior -----
 .header--dark-theme {
   background-color: transparent;
   box-shadow: none;
@@ -184,20 +193,20 @@
 
   & .logo svg {
     stroke: v.$white;
-  }    
+  }
 
   & .nav__link {
     color: v.$white;
 
     @media screen and (max-width: v.$mobileWidth) {
       color: v.$text-dark;
-    } 
+    }
   }
 
   & .header__burger svg {
     @media screen and (max-width: v.$mobileWidth) {
       stroke: v.$white;
-    }    
+    }
   }
 }
 
@@ -209,13 +218,13 @@
   @media screen and (min-width: v.$tabletWidth) {
     cursor: pointer;
     transition: v.$transition;
-  
+
     &:hover {
       color: v.$accent1;
       outline: none;
       transition: v.$transition;
     }
-    
+
     &:hover svg {
       stroke: v.$accent1;
       transition: v.$transition;
@@ -226,11 +235,11 @@
 .nav__link {
   @media screen and (min-width: v.$tabletWidth) {
     cursor: pointer;
-  
+
     &:hover {
       color: v.$accent1;
       outline: none;
-    }   
+    }
   }
 }
 
@@ -246,16 +255,17 @@
   top: 10px;
   right: 20px;
 
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: -10px;
   transition: all 300ms ease-in-out;
 
   & svg {
     stroke: v.$text-dark;
+    transform: scale(0.8);
   }
 
   @media screen and (max-width: v.$mobileWidth) {
     display: block;
-  } 
+  }
 }

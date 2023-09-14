@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './catalog.scss';
 import { useInView } from 'react-intersection-observer';
 import useLocalStorage from '../../hooks/use-local-storage';
+import useWindowSize from '../../hooks/use-window-size';
 import useFetch from '../../hooks/use-fetch';
 import { IImage } from '../../interfaces/image';
-import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING, InfoTitle } from '../../constants/constants';
-import CatalogItem from '../catalog-item/catalog-item';
-import ButtonUp from '../button-up/button-up';
+import { URL, FETCH_OPTIONS, ITEMS_PER_FETCHING, InfoTitle, HEADER_HEIGHT, ITEM_HEIGHT } from '../../constants/constants';
+import { getElementsInRow, getSercherHeight } from '../../utils/adaptive-elements';
+import { toMatrix } from '../../utils/to-matrix';
+import ScrollVirtualizer from '../scroll-virtualizer/scroll-virtualizer';
 
 const Catalog = (): JSX.Element => {
   const { fetchData, items, error, currentPage, isLoading, isNextPage } = useFetch();
   const [ fetchMore, setFetchMore ] = useState(true);
+  const [ width, height] = useWindowSize();
+  const elementsInRow = getElementsInRow(width);
+  const sercherHeight = getSercherHeight(width);
+  const visibleRows = Math.ceil((height - HEADER_HEIGHT - sercherHeight) / ITEM_HEIGHT);
     
   const { ref, inView } = useInView({
     threshold: 0,
@@ -30,11 +36,11 @@ const Catalog = (): JSX.Element => {
         FETCH_OPTIONS
       );
     } 
+
     setFetchMore(false);
   }, [fetchData, fetchMore]);
 
-
-  const [favourites, setFavourites] = useLocalStorage([], 'favourites');
+  const [ favourites, setFavourites ] = useLocalStorage([], 'favourites');
 
   const addToFavouritesHandler = (id: number) => {
     const isSelectedItems = favourites.find((item: IImage) => item.id === id);
@@ -45,30 +51,25 @@ const Catalog = (): JSX.Element => {
         ? prev.filter((el: IImage) => el.id !== id)
         : [...prev, newItem]
     );
-  };
+  }; 
 
   if (error) return <div className='info'>{InfoTitle.Error}</div>;
 
   return (
-    <section className='catalog'>
-      <h2 className='visually-hidden'>catalog</h2>
-
-      <div className='catalog__box'>
-        {items.map((item, index) => (
-          <CatalogItem
-            item={item}
-            key={`${item.id}-${index}`}
-            favouritesHandler={addToFavouritesHandler}
-            favourites={favourites}
-          />
-        ))}
+    <section>
+      <ScrollVirtualizer
+        data={toMatrix(items, elementsInRow)}
+        rowHeight={ITEM_HEIGHT}
+        visibleRows={visibleRows}
+        elementsInRow={elementsInRow}
+        favouritesHandler={addToFavouritesHandler}
+        favourites={favourites}        
+      >
+        <div className='catalog__fetching' ref={ref}></div>
         {isNextPage && isLoading && <div className='info'>{InfoTitle.Loading}</div>}
-      </div>
-      <div ref={ref}></div>
-
-      <ButtonUp/>
+      </ScrollVirtualizer>
     </section>
-  );
+  );  
 };
 
 export default Catalog;

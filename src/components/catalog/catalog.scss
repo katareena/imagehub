@@ -1,31 +1,16 @@
 @use '../../global-styles/variables.scss' as v;
 @use '../../global-styles/mixins.scss' as m;
 
-.catalog {
-  @include m.container;
-  padding: 20px 45px;
-  position: relative;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    padding: 7px 25px;
-  }
-}
-
-.catalog__title {
-  margin-bottom: 20px;
-
-  @media screen and (max-width: v.$mobileWidth) {
-    margin-bottom: 15px;
-  }
-}
-
 .catalog__box {
-  width: 100%;
-  min-height: 120vh;
+  @include m.container;
+  @include m.containerPaddings;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 200px);
-  gap: 25px;
+  gap: 10px;
   margin-bottom: 20px;
 
   @media screen and (max-width: v.$desktopWidth) {
@@ -38,10 +23,16 @@
 
   @media screen and (max-width: v.$mobileWidth) {
     grid-template-columns: repeat(1, minmax(205px, 1fr));
-    gap: 15px;
   }
+}
 
-  &.catalog__box--basic {
-    min-height: auto;
-  }
+.catalog__table {
+  @include m.container;
+  @include m.tablePaddings;
+  border-spacing: 10px; 
+}
+
+.catalog__fetching {
+  width: 100%;
+  height: 50px;
 }

@@ -2,12 +2,12 @@
 ### Photo Inspiration App
 
 * [Pexels API integration](https://www.pexels.com/api/documentation);
-* Adaptive layout;
-* Cross-browser compatibility (Chrome, Firefox);
-* Infinite scrolling (virtualization in process);
+* Infinite virtual scrolling;
 * Favouriting;
 * Searching;
-* Lazy-loading images.
+* Lazy-loading images;
+* Adaptive layout;
+* Cross-browser compatibility (Chrome, Firefox).
 
 #### 🏠 [Homepage](https://github.com/katareena/imagehub)
 #### ✨ [Demo](https://imagehub.vercel.app/)

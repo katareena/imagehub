@@ -20,3 +20,56 @@ $maxWidth: 1200;
   max-width: 1200px;
   margin: 0 auto;
 }
+
+@mixin containerPaddings {
+	padding-left: 45px;
+	padding-right: 45px;
+
+	@media screen and (max-width: v.$tabletWidth) {
+		padding-left: 30px;
+		padding-right: 30px;
+  }
+
+  @media screen and (max-width: v.$mobileWidth) {
+		padding-left: 20px;
+		padding-right: 20px;
+  }
+} 
+
+@mixin tablePaddings {
+	padding-left: 35px;
+	padding-right: 35px;
+
+	@media screen and (max-width: v.$tabletWidth) {
+		padding-left: 20px;
+		padding-right: 20px;
+  }
+
+  @media screen and (max-width: v.$mobileWidth) {
+		padding-left: 10px;
+		padding-right: 10px;
+  }
+} 
+
+@mixin searchPaddings {
+	padding-left: 100px;
+	padding-right: 100px;
+
+	@media screen and (max-width: v.$tabletWidth) {
+		padding-left: 30px;
+		padding-right: 30px;
+  }
+
+  @media screen and (max-width: v.$mobileWidth) {
+		padding-left: 20px;
+		padding-right: 20px;
+  }
+}
+
+@mixin lostText {
+	color: v.$text-dark;
+  display: flex;
+  width: max-content;
+  padding: 5px 0;
+  margin: 0 auto;
+}
