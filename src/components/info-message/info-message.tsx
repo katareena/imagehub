@@ -5,10 +5,10 @@ import './info-message.scss';
 
 type InfoMessageProps = {
   text: string,
-  goToRoot: boolean,
+  goToRoot?: boolean,
 }
 
-const InfoMessage: FC<InfoMessageProps> = ({text, goToRoot}): JSX.Element => {
+const InfoMessage: FC<InfoMessageProps> = ({text, goToRoot = false}): JSX.Element => {
   return (
     <div className='info-message'>
       <p className='info-message__text'>{text}</p>

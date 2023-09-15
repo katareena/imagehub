@@ -16,10 +16,7 @@ const Favourites = (): JSX.Element => {
 
   if (!favourites.length)
     return (
-      <InfoMessage 
-        text={InfoText.EmptyFavourites}
-        goToRoot={false}
-      /> 
+      <InfoMessage text={InfoText.EmptyFavourites} /> 
     );
 
   return (

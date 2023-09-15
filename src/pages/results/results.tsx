@@ -70,10 +70,7 @@ const Results = (): JSX.Element => {
     );
 
   if (!items.length && !isLoading) return (
-    <InfoMessage 
-      text={InfoText.NotFoundImg}
-      goToRoot={false}
-    /> 
+    <InfoMessage text={InfoText.NotFoundImg} /> 
   );
 
   return (
@@ -88,10 +85,7 @@ const Results = (): JSX.Element => {
       >
         <div className="catalog__fetching" ref={ref}></div>
         {isNextPage && isLoading && (
-          <InfoMessage 
-            text={InfoText.Loading}
-            goToRoot={false}
-          />           
+          <InfoMessage text={InfoText.Loading} />           
         )}
       </ScrollVirtualizer>
     </section>

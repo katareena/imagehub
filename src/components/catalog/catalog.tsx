@@ -24,12 +24,13 @@ import InfoMessage from '../info-message/info-message';
 const Catalog = (): JSX.Element => {
   const { fetchData, items, error, currentPage, isLoading, isNextPage } =
     useFetch();
-  const [fetchMore, setFetchMore] = useState(true);
-  const [width, height] = useWindowSize();
+  const [ fetchMore, setFetchMore ] = useState(true);
+  const [ width, height ] = useWindowSize();
   const elementsInRow = getElementsInRow(width);
   const sercherHeight = getSercherHeight(width);
   const visibleRows = (height - HEADER_HEIGHT - sercherHeight) / ITEM_HEIGHT;
 
+  // useInView triggers re-rendering of the component
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '100px 0px 0px 0px',
@@ -52,7 +53,7 @@ const Catalog = (): JSX.Element => {
     setFetchMore(false);
   }, [fetchData, fetchMore]);
 
-  const [favourites, setFavourites] = useLocalStorage([], 'favourites');
+  const [ favourites, setFavourites ] = useLocalStorage([], 'favourites');
 
   const addToFavouritesHandler = (id: number) => {
     const isSelectedItems = favourites.find((item: IImage) => item.id === id);
@@ -66,10 +67,7 @@ const Catalog = (): JSX.Element => {
   };
 
   if (error) return (
-    <InfoMessage 
-      text={InfoText.Error}
-      goToRoot={false}
-    /> 
+    <InfoMessage text={InfoText.Error} /> 
   );
 
   return (
@@ -86,10 +84,7 @@ const Catalog = (): JSX.Element => {
         <div className="catalog__fetching" ref={ref}></div>
 
         {isNextPage && isLoading && (
-          <InfoMessage 
-            text={InfoText.Loading}
-            goToRoot={false}
-          />          
+          <InfoMessage text={InfoText.Loading} />          
         )}
 
       </ScrollVirtualizer>
