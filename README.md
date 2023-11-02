@@ -1,5 +1,5 @@
 ## Welcome to ImageHub App👋
-### Photo Inspiration App
+### Photo Inspiration App created using create-react-app.
 
 * [Pexels API integration](https://www.pexels.com/api/documentation);
 * Infinite virtual scrolling;
